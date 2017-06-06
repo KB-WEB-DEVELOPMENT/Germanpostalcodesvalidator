@@ -1,0 +1,13 @@
+{
+	"name": "KB-WEB-DEVELOPMENT/Germanpostalcodesvalidator",
+	"description": "PHP tool to determine if a postal code entered by the user belongs to a German city or a German town.",
+	"keywords": ["PHP","Germany","postal codes","PLZ", "Deutschland"],
+	"homepage": "https://github.com/KB-WEB-DEVELOPMENT/Germanpostalcodesvalidator",
+	"license": "GPL-3.0",
+	"autoload": {
+		"classmap": ["src/"]
+	},
+	 "require": {
+		"phpoffice/phpexcel": "dev-develop"
+    }
+}
