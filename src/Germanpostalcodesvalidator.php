@@ -32,6 +32,13 @@
 		private $_columns = array();
 		protected $filterSubsetObj = new stdClass();
 		
+		protected $objReader = new stdClass();
+		protected $objPHPExcel = new stdClass();
+		protected $postalCodesArray = array();
+		protected $input = "";
+		protected $result = true;
+		
+		
 		/** setting parameters for reading the Excel worksheet
 		* @param int
 		* @param int
@@ -69,38 +76,34 @@
 		*/
 		
 		public function validate_postal_code($filterSubsetObj, $input) {
-						
-			$inputFileType = 'Excel5';
-			$inputFileName = 'OpenGeoDB_plz_ort_de.xls';
-			$sheetname = 'Tabelle1';
-			
+									
 			$this->filterSubsetObj = $filterSubsetObj; 
 
-			$objReader = PHPExcel_IOFactory::createReader($inputFileType);
+			$this->objReader = PHPExcel_IOFactory::createReader("Excel5");
 
-			$objReader->setLoadSheetsOnly($sheetname);
+			$this->objReader->setLoadSheetsOnly("Tabelle1");
 
-			$objReader->setReadFilter($this->filterSubsetObj);
+			$this->objReader->setReadFilter($this->filterSubsetObj);
 
-			$objPHPExcel = $objReader->load($inputFileName);
+			$this->objPHPExcel = $this->objReader->load('OpenGeoDB_plz_ort_de.xls');
 
-			$postalCodesArray = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+			$this->postalCodesArray = $this->objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
 
-			$input = preg_replace('~\D~','', $input);
+			$this->input = preg_replace('~\D~','', $input);
 			
-			foreach ($postalCodesArray as $v => $postalCode ) {
+			foreach ($this->postalCodesArray as $v => $postalCode ) {
 					
-				if (trim($postalCode) == $input) {
+				if (trim($postalCode) == $this->input) {
 							
-					$result = true;
+					$this->result = true;
 					break;
 					
 				} else {						
-					$result = false;
+					$this->result = false;
 				  }		
 			}
 			
-			return $result;
+			return $this->result;
 		}
 	}			
 
