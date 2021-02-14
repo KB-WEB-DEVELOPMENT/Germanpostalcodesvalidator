@@ -39,7 +39,11 @@ against the string entered to check all postal codes. (The checks have to be don
 Example: to check if the postal code 01994 matches one of the first 500 postal codes in column "A" of OpenGeoDB_plz_ort_de.xls
 
     <?php
-	        // in file: src/index.php
+	  
+	  // in file:  project_root/src/index.php
+		
+	  require_once __DIR__ . '/vendor/autoload.php';
+	  use KB-WEB-DEVELOPMENT\Germanpostalcodesvalidator;
 
           $validator = new Germanpostalcodesvalidator(0,500,range('A'));
 
