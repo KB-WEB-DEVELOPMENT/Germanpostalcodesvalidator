@@ -91,7 +91,7 @@
 			
 			$input = trim($input);
     
-			if (isset($input) === true && $input === '') {
+			if ( !isset($input) || (isset($input) === true && $input === '') ) {
     
 			   die("You cannot enter an empty string. Your string must contain at least one character."); 
   
