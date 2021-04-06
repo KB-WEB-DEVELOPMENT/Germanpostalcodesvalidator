@@ -88,6 +88,14 @@
 			$this->objPHPExcel = $this->objReader->load('OpenGeoDB_plz_ort_de.xls');
 
 			$this->postalCodesArray = $this->objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+			
+			$input = trim($input);
+    
+			if (isset($input) === true && $input === '') {
+    
+			   die("You cannot enter an empty string. Your string must contain at least one character."); 
+  
+ 			}
 
 			$this->input = preg_replace('~\D~','', $input);
 			
