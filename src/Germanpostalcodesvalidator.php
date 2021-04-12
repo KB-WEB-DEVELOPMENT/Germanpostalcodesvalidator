@@ -27,13 +27,14 @@
 		
 	class Germanpostalcodevalidator implements PHPExcel_Reader_IReadFilter	{
 
-		private $_startRow = 0;
-		private $_endRow = 0;
-		private $_columns = array();
-		protected $filterSubsetObj;
+		protected $_startRow = 0;
+		protected $_endRow = 0;
+		protected $_columns = array();
 		
+		protected $filterSubsetObj;		
 		protected $objReader;
 		protected $objPHPExcel;
+		
 		protected $postalCodesArray = array();
 		protected $input = "";
 		protected $result = true;
