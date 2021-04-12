@@ -52,22 +52,6 @@
 			$this->_columns		= $columns;
 								
 		}
-				
-		/**
-		* returns true while data is being read, false when all cells have been read
-		* @param int
-		* @param int
-		* @param string
-		* @return bool
-		*/
-		public function readCell($column, $row, $worksheetName = '') {
-			if ($row >= $this->_startRow && $row <= $this->_endRow) {
-				if (in_array($column,$this->_columns)) {
-					return true;
-				}
-			}
-			return false;
-		}
 
 		/**
 		* returns true if the string input is an official German postal code within any Germany city or town.
