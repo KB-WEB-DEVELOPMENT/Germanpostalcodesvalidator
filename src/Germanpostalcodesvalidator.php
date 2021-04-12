@@ -30,10 +30,10 @@
 		private $_startRow = 0;
 		private $_endRow = 0;
 		private $_columns = array();
-		protected $filterSubsetObj = new stdClass();
+		protected $filterSubsetObj;
 		
-		protected $objReader = new stdClass();
-		protected $objPHPExcel = new stdClass();
+		protected $objReader;
+		protected $objPHPExcel;
 		protected $postalCodesArray = array();
 		protected $input = "";
 		protected $result = true;
@@ -75,9 +75,19 @@
 		* @return bool
 		*/
 		
-		public function validate_postal_code($filterSubsetObj, $input) {
+		public function validate_postal_code($input) {
 									
-			$this->filterSubsetObj = $filterSubsetObj; 
+			$input = trim($input);
+    
+			if ( !isset($input) || (isset($input) === true && $input === '') ) {
+    
+			   die("You cannot enter an empty string. Your string must contain at least one character."); 
+  
+ 			}
+
+			$this->input = preg_replace('~\D~','', $input);
+									
+			$this->filterSubsetObj = new MyReadFilter(); 
 
 			$this->objReader = PHPExcel_IOFactory::createReader("Excel5");
 
@@ -88,16 +98,6 @@
 			$this->objPHPExcel = $this->objReader->load('OpenGeoDB_plz_ort_de.xls');
 
 			$this->postalCodesArray = $this->objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
-			
-			$input = trim($input);
-    
-			if ( !isset($input) || (isset($input) === true && $input === '') ) {
-    
-			   die("You cannot enter an empty string. Your string must contain at least one character."); 
-  
- 			}
-
-			$this->input = preg_replace('~\D~','', $input);
 			
 			foreach ($this->postalCodesArray as $v => $postalCode ) {
 					
