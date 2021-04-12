@@ -31,7 +31,7 @@ After the installation, the files structure should look the following:
 3.USAGE
 --------
 
-3.1 validate_postal_code(Object $filterSubsetObj, String $input)
+3.1 validate_postal_code(String $input)
 
 There are 59215 German towns & cities postal codes in the Excel file OpenGeoDB_plz_ort_de.xls and the filter runs for blocks of 500 postal codes at a time. The method validate_postal_code() has to be called (59215/500) = 119 times approximately
 against the string entered to check all postal codes. (The checks have to be done in chunks to avoid a computer memory crash).
@@ -49,13 +49,13 @@ Example: to check if the postal code 01994 matches one of the first 500 postal c
 
           $postalCode = "01994"; 
 
-          echo $validator->validate_postal_code($validator,$postalCode); // output: 1 (TRUE) 
+          echo $validator->validate_postal_code($postalCode); // output: 1 (TRUE) 
 
           $postalCode = "1994";
 
           echo "<br/>";
 
-          echo $validator->validate_postal_code($validator,$postalCode); // output: 0 (FALSE)
+          echo $validator->validate_postal_code($postalCode); // output: 0 (FALSE)
 
     ?>
 
