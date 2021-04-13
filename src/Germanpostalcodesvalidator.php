@@ -55,7 +55,6 @@
 
 		/**
 		* returns true if the string input is an official German postal code within any Germany city or town.
-		* @param object
 		* @param string
 		* @return bool
 		*/
